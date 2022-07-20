@@ -25,9 +25,11 @@ app.get('/', (req, res) => {
 
 const newslettersRouter = require('./routes/newsletters');
 const subscribersRouter = require('./routes/subscribers');
+const subscriptionsRouter = require('./routes/subscriptions');
 
 app.use('/newsletters', newslettersRouter);
 app.use('/subscribers', subscribersRouter);
+app.use('/subscriptions', subscriptionsRouter);
 
 app.listen(port, () => {
     console.log(`Serevr is running on port: ${port}`);
