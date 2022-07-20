@@ -23,6 +23,15 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/addfromfile').get((req, res) => {
+    res.render('subscribers/importsubscribers');
+});
+
+router.route('/addfromfile').post((req, res) => {
+
+    res.redirect('/subscribers');
+});
+
 router.route('/:id').get((req, res) => {
     Subscriber.findById(req.params.id).then(subscriber => res.render('subscribers/subscriber', { subscriber: subscriber })).catch(err => res.status(400).json('Error: ' + err));
 });
