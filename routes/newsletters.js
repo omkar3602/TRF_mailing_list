@@ -2,7 +2,8 @@ const express = require('express')
 const router = require('express').Router();
 let Newsletter = require('../models/newsletter.model')
 router.use(express.urlencoded({
-    extended: true
+    extended: true,
+    limit: '50mb'
 }))
 
 router.route('/').get((req, res) => {

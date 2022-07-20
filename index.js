@@ -10,8 +10,9 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 app.set('view engine', 'ejs');
+
 
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
@@ -25,7 +26,7 @@ connection.once('open', () => {
 });
 
 app.get('/', (req, res) => {
-    res.render('index', { text: "World" });
+    res.render('index');
 });
 
 const newslettersRouter = require('./routes/newsletters');
