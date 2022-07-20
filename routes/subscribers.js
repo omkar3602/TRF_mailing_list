@@ -28,8 +28,20 @@ router.route('/addfromfile').get((req, res) => {
 });
 
 router.route('/addfromfile').post((req, res) => {
+    if (req.files)
+        emailsFile = req.files.emails;
+    else
+        return res.status(400).json('No file uploaded');
+    uploadPath = __basedir + '/uploads/' + emailsFile.name;
 
-    res.redirect('/subscribers');
+    emailsFile.mv(uploadPath, function (err) {
+        if (err)
+            return res.status(500).send(err);
+        else
+            return res.redirect('/subscribers');
+    });
+
+
 });
 
 router.route('/:id').get((req, res) => {

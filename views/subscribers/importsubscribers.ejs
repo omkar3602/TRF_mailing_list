@@ -14,8 +14,8 @@
     <a href="/subscribers">Back</a>
     <hr>
 
-    <form method="POST">
-        <input type="file" accept=".csv">
+    <form method="POST" encType="multipart/form-data">
+        <input type="file" accept=".xlsx" name="emails" required>
         <button type="submit">Import subscribers</button>
     </form>
 </body>

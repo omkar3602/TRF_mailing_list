@@ -4,12 +4,17 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
+global.__basedir = __dirname;
+
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 app.set('view engine', 'ejs');
+
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri);
@@ -32,5 +37,5 @@ app.use('/subscribers', subscribersRouter);
 app.use('/subscriptions', subscriptionsRouter);
 
 app.listen(port, () => {
-    console.log(`Serevr is running on port: ${port}`);
+    console.log(`Server is running on port: ${port}`);
 })
