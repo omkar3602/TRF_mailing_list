@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribers</title>
+</head>
+
+<body>
+    <h1>Subscriber</h1>
+    <br>
+    <a href="/">Home</a>
+    <a href="/subscribers">Back</a>
+    <hr>
+    <p>
+        <%=subscriber.email%>
+    </p>
+    <hr>
+    <a href=<%=`/subscribers/edit/${subscriber._id}`%>>Edit</a>
+
+    <form action=<%=`/subscribers/delete/${subscriber._id}`%> method="post" >
+        <button type="submit">Delete</button>
+    </form>
+    <br>
+    <br>
+    <hr>
+
+
+</body>
+
+</html>

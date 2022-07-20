@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletters</title>
+</head>
+
+<body>
+    <h1>Newsletters</h1>
+    <a href="/">Home</a>
+    <a href="/newsletters/add">New newsletter</a>
+    <hr>
+
+    <table border="2">
+
+        <tr>
+            <td>
+                <b>Subject</b>
+            </td>
+            <td>
+                <b>Content</b>
+            </td>
+            <td>
+                <b>View</b>
+            </td>
+        </tr>
+        <% for(var i=0; i < newsletters.length; i++) { %>
+            <tr>
+                <td>
+                    <%= newsletters[i].subject %>
+                </td>
+                <td>
+                    <%= newsletters[i].content %>
+                </td>
+                <td>
+                    <a href=<%=`/newsletters/${newsletters[i]._id}`%> >View</a>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+</body>
+
+</html>
