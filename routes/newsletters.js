@@ -62,7 +62,7 @@ router.route('/addfromfile').post(Authenticate, (req, res) => {
                         .catch(err => res.status(400).json('Error: ' + err));
                 }
             });
-            res.redirect('/newsletters');
+
         }
     });
 });
