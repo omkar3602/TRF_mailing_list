@@ -1,20 +1,21 @@
 const express = require('express')
 const router = require('express').Router();
 let Subscriber = require('../models/subscriber.model')
+const Authenticate = require('./middleware');
 router.use(express.urlencoded({
     extended: true
 }))
 
-router.route('/').get((req, res) => {
+router.route('/').get(Authenticate, (req, res) => {
     Subscriber.find().then(subscribers => res.render('subscribers/subscribers', { subscribers: subscribers })).catch(err => res.status(400).json('Error: ' + err));
 
 });
 
-router.route('/add').get((req, res) => {
+router.route('/add').get(Authenticate, (req, res) => {
     res.render('subscribers/newsubscriber');
 });
 
-router.route('/add').post((req, res) => {
+router.route('/add').post(Authenticate, (req, res) => {
     const email = req.body.email;
 
     const newsubscriber = new Subscriber({ email });
@@ -23,11 +24,11 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/addfromfile').get((req, res) => {
+router.route('/addfromfile').get(Authenticate, (req, res) => {
     res.render('subscribers/importsubscribers');
 });
 
-router.route('/addfromfile').post((req, res) => {
+router.route('/addfromfile').post(Authenticate, (req, res) => {
     if (req.files)
         emailsFile = req.files.emails;
     else
@@ -44,20 +45,20 @@ router.route('/addfromfile').post((req, res) => {
 
 });
 
-router.route('/:id').get((req, res) => {
+router.route('/:id').get(Authenticate, (req, res) => {
     Subscriber.findById(req.params.id).then(subscriber => res.render('subscribers/subscriber', { subscriber: subscriber })).catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/delete/:id').post((req, res) => {
+router.route('/delete/:id').post(Authenticate, (req, res) => {
     Subscriber.findByIdAndDelete(req.params.id).then(subscriber => res.redirect("/subscribers")).catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/edit/:id').get((req, res) => {
+router.route('/edit/:id').get(Authenticate, (req, res) => {
     Subscriber.findById(req.params.id).then(
         subscriber => res.render('subscribers/editsubscriber', { subscriber: subscriber })).catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/edit/:id').post((req, res) => {
+router.route('/edit/:id').post(Authenticate, (req, res) => {
     Subscriber.findById(req.params.id).then(
         subscriber => {
             subscriber.email = req.body.email;

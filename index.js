@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser')
 
 require('dotenv').config();
 
@@ -12,7 +13,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.set('view engine', 'ejs');
-
+app.use(cookieParser())
 
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
@@ -32,10 +33,12 @@ app.get('/', (req, res) => {
 const newslettersRouter = require('./routes/newsletters');
 const subscribersRouter = require('./routes/subscribers');
 const subscriptionsRouter = require('./routes/subscriptions');
+const loginRouter = require('./routes/login');
 
 app.use('/newsletters', newslettersRouter);
 app.use('/subscribers', subscribersRouter);
 app.use('/subscriptions', subscriptionsRouter);
+app.use('/login', loginRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
