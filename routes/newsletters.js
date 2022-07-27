@@ -4,6 +4,7 @@ let Newsletter = require('../models/newsletter.model')
 const Authenticate = require('./middleware');
 let send_Mail = require('../utils/email_sender')
 let Subscriber = require('../models/subscriber.model')
+const fs = require('fs');
 router.use(express.urlencoded({
     extended: true,
     limit: '50mb'
@@ -26,6 +27,44 @@ router.route('/add').post(Authenticate, (req, res) => {
 
     newnewsletter.save().then(() => res.redirect('/newsletters'))
         .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/addfromfile').get(Authenticate, (req, res) => {
+    res.render('newsletters/importnewsletter');
+});
+
+router.route('/addfromfile').post(Authenticate, (req, res) => {
+    if (req.files)
+        newsletterFile = req.files.newsletter;
+    else
+        return res.status(400).json('No file uploaded');
+
+    uploadPath = __basedir + '/uploads/' + newsletterFile.name;
+    newsletterFile.mv(uploadPath, function (err) {
+        if (err)
+            return res.status(500).send(err);
+        else {
+            const subject = req.body.subject;
+            fs.readFile(uploadPath, "utf-8", function (err, content) {
+                if (err)
+                    throw err;
+                else {
+                    try {
+                        fs.unlinkSync(uploadPath);
+                    }
+                    catch (err) {
+                        res.status(400).json('Error: ' + err)
+                    };
+
+                    const newnewsletter = new Newsletter({ subject, content });
+
+                    newnewsletter.save().then(() => res.redirect('/newsletters'))
+                        .catch(err => res.status(400).json('Error: ' + err));
+                }
+            });
+            res.redirect('/newsletters');
+        }
+    });
 });
 
 router.route('/:id').get(Authenticate, (req, res) => {
