@@ -6,7 +6,7 @@ router.use(express.urlencoded({
 }))
 
 router.route('/').get((req, res) => {
-    res.render('subscriptions/subscriptions')
+    res.redirect('/subscriptions/subscribe')
 });
 
 router.route('/subscribe').get((req, res) => {

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
+const toastr = require('express-toastr');
 
 require('dotenv').config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.set('view engine', 'ejs');
 app.use(cookieParser())
+app.use(toastr());
 
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
@@ -26,8 +28,7 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 });
 
-const Authenticate = require('./routes/middleware');
-app.get('/', Authenticate, (req, res) => {
+app.get('/', (req, res) => {
     res.render('index');
 });
 
