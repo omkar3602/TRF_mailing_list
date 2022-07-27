@@ -28,7 +28,8 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 });
 
-app.get('/', (req, res) => {
+const Authenticate = require('./routes/middleware');
+app.get('/', Authenticate, (req, res) => {
     res.render('index');
 });
 

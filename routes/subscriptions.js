@@ -1,12 +1,13 @@
 const express = require('express')
 const router = require('express').Router();
 let Subscriber = require('../models/subscriber.model')
+const Authenticate = require('./middleware');
 router.use(express.urlencoded({
     extended: true
 }))
 
-router.route('/').get((req, res) => {
-    res.redirect('/subscriptions/subscribe')
+router.route('/').get(Authenticate, (req, res) => {
+    res.render('subscriptions/subscriptions');
 });
 
 router.route('/subscribe').get((req, res) => {
