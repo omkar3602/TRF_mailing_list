@@ -2,6 +2,8 @@ const express = require('express')
 const router = require('express').Router();
 let Subscriber = require('../models/subscriber.model')
 const Authenticate = require('./middleware');
+const fs = require('fs');
+const xlsx = require('xlsx');
 router.use(express.urlencoded({
     extended: true
 }))
@@ -33,13 +35,41 @@ router.route('/addfromfile').post(Authenticate, (req, res) => {
         emailsFile = req.files.emails;
     else
         return res.status(400).json('No file uploaded');
-    uploadPath = __basedir + '/uploads/' + emailsFile.name;
 
+    uploadPath = __basedir + '/uploads/' + emailsFile.name;
     emailsFile.mv(uploadPath, function (err) {
         if (err)
             return res.status(500).send(err);
-        else
-            return res.redirect('/subscribers');
+        else {
+            workbook = xlsx.readFile(uploadPath);
+            worksheet = workbook.Sheets[workbook.SheetNames[0]];
+            const subscribers = [];
+            let subscriber = {};
+
+            for (let cell in worksheet) {
+                const cellAsString = cell.toString();
+
+                if (cellAsString[0] === 'A') {
+                    subscriber.email = worksheet[cell].v;
+                    subscribers.push(subscriber);
+                    subscriber = {};
+                }
+            }
+
+            try {
+                fs.unlinkSync(uploadPath);
+            }
+            catch (err) {
+                res.status(400).json('Error: ' + err)
+            };
+
+            Subscriber.insertMany(subscribers).then(() => res.redirect('/subscribers')).catch(err => {
+                if (err.code === 11000)
+                    return res.redirect('/subscribers')
+                else
+                    res.status(400).json('Error: ' + err)
+            });
+        }
     });
 
 

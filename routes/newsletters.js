@@ -2,6 +2,8 @@ const express = require('express')
 const router = require('express').Router();
 let Newsletter = require('../models/newsletter.model')
 const Authenticate = require('./middleware');
+let send_Mail = require('../utils/email_sender')
+let Subscriber = require('../models/subscriber.model')
 router.use(express.urlencoded({
     extended: true,
     limit: '50mb'
@@ -49,9 +51,6 @@ router.route('/edit/:id').post(Authenticate, (req, res) => {
                 (newsletter) => res.redirect(`/newsletters/${newsletter._id}`)).catch(err => res.status(400).json('Error: ' + err));
         }).catch(err => res.status(400).json('Error: ' + err));
 });
-
-let send_Mail = require('../utils/email_sender')
-let Subscriber = require('../models/subscriber.model')
 
 router.route('/send').post(Authenticate, (req, res) => {
     const email = req.body.email;
