@@ -36,7 +36,7 @@ router.route('/').post(async (req, res) => {
             const isMatch = await bcrypt.compare(pass, userLogin.pass);
             token = await userLogin.generateAuthToken();
             res.cookie("jwtoken", token, {
-                expires: new Date(Date.now() + 3000000),
+                expires: new Date(Date.now() + 3600000), // 1 hour
                 httpOnly: true
             });
             if (!isMatch) {

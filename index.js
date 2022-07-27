@@ -37,11 +37,13 @@ const newslettersRouter = require('./routes/newsletters');
 const subscribersRouter = require('./routes/subscribers');
 const subscriptionsRouter = require('./routes/subscriptions');
 const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
 
 app.use('/newsletters', newslettersRouter);
 app.use('/subscribers', subscribersRouter);
 app.use('/subscriptions', subscriptionsRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
