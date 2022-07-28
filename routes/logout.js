@@ -8,7 +8,7 @@ router.use(express.urlencoded({
 
 
 router.route('/').post(async (req, res) => {
-    res.cookie("jwtoken", "", { maxAge: 1 });
+    res.clearCookie('jwtoken', { path: '/'});
     res.redirect('/login');
 });
 
