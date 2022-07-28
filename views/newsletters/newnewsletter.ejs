@@ -5,16 +5,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/css/login.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />  
+    <style>
+        body {
+            margin: 20px 50px;
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+
+        }
+    </style>
     <title>New newsletter</title>
 </head>
 
 <body>
-    <h1>New newsletter</h1>
-    <a href="/">Home</a>
-    <a href="/newsletters">Back</a>
+    <div class="d-sm-flex align-items-center justify-content-between">
+        <h1 class="h3 mb-0 fs-1 fw-bolder text-dark">New newsletter</h1>
+        <!-- <form action="/logout/" method="post" class="d-mb-inline-block d-sm-inline-block">
+            <button type="submit" class="d-mb-inline-block d-sm-inline-block btn btn-sm btn-dark shadow-sm">Logout</button>
+        </form> -->
+        
+    </div>
+    <a class="btn btn-sm btn-dark shadow-sm mt-2" href="/">Home</a>
+    <a class="btn btn-sm btn-dark shadow-sm mt-2" href="/newsletters">Back</a>
     <hr>
 
-    <form method="POST">
+    <div class="card border-left-primary shadow px-2 m-3 mt-3 ">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div>
+                    <form method="POST">
+                        <label for="subject">SUBJECT:</label>
+                        <input type="text" name="subject" class="form-control" style="width: 500px" placeholder="Subject" required>
+                        <br>
+                        <label for="content">CONTENT:</label>
+                        <textarea rows="10" name="content" class="form-control" style="width: 500px" placeholder="Content" required></textarea>
+                        <br>
+                        <button class="btn btn-sm btn-dark shadow-sm px-4" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- <form method="POST">
         <label for="subject">Subject:</label>
         <input type="text" name="subject" placeholder="Subject" required>
         <br>
@@ -22,7 +61,7 @@
         <textarea rows="10" name="content" placeholder="Content" required></textarea>
         <br>
         <button type="submit">Add</button>
-    </form>
+    </form> -->
 </body>
 
 </html>

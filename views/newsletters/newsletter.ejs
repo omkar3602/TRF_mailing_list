@@ -6,41 +6,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newsletters</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/css/login.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 20px 50px;
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Newsletter</h1>
-    <br>
-    <a href="/">Home</a>
-    <a href="/newsletters">Back</a>
-    <hr>
-    <span>
-        <%=newsletter.subject%>
-    </span>
-    <p>
-        <%=newsletter.content%>
-    </p>
-    <hr>
-    <a href=<%=`/newsletters/edit/${newsletter._id}`%>>Edit</a>
+    <div class="d-sm-flex align-items-center justify-content-between mb-0">
+        <h1 class="h3 mb-0 fs-1 fw-bolder text-dark">Newsletter</h1>
+        <!-- <form action="/logout/" method="post" class="d-mb-inline-block d-sm-inline-block">
+            <button type="submit" class="d-mb-inline-block d-sm-inline-block btn btn-sm btn-dark shadow-sm">Logout</button>
+        </form> -->
 
-    <form action=<%=`/newsletters/delete/${newsletter._id}`%> method="post" >
-        <button type="submit">Delete</button>
-    </form>
-    <br>
-    <br>
+    </div>
+
+    <a href="/" class="btn btn-sm btn-dark shadow-sm mt-2">Home</a>
+    <a href="/newsletters" class="btn btn-sm btn-dark shadow-sm mt-2">Back</a>
+
     <hr>
-    <form action=<%=`/newsletters/send`%> method="post">
-        <input type="text" name="email" placeholder="Email" required>
-        <input type="hidden" name="_id" value=<%=newsletter._id%>>
-        <button type="submit">Test</button>
-    </form>
-    <br>
-    <br>
-    <hr>
-    <form action=<%=`/newsletters/sendtoall`%> method="post">
-        <input type="hidden" name="_id" value=<%=newsletter._id%>>
-        <button type="submit">Send to Subscribers</button>
-    </form>
+    <div class="card border-left-primary shadow px-2 m-3 mt-3 ">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div>
+                    <h5 class="fw-bold">Subject:- <span class="fw-normal">
+                            <%=newsletter.subject%>
+                        </span></h5>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-left-primary shadow px-2 m-3 mt-3 ">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div>
+                    <p>
+                        <%=newsletter.content%>
+                    </p>
+                    <hr>
+                    <a class="btn btn-sm btn-outline-dark shadow-sm"
+                        href=<%=`/newsletters/edit/${newsletter._id}`%>>Edit</a>
+                    <form action=<%=`/newsletters/delete/${newsletter._id}`%> method="post" >
+                        <button class="btn btn-sm btn-outline-dark shadow-sm my-2" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-left-primary shadow px-2 m-3 mt-3 ">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div>
+
+                    <form action=<%=`/newsletters/send`%> method="post">
+                        <input type="text" name="email" placeholder="Email" required>
+                        <input type="hidden" name="_id" value=<%=newsletter._id%>>
+                        <button class="btn btn-sm btn-outline-dark m-0 p-2 px-4" type="submit">Test</button>
+                    </form>
+                    <br>
+
+                    <form action=<%=`/newsletters/sendtoall`%> method="post">
+                        <input type="hidden" name="_id" value=<%=newsletter._id%>>
+                        <button class="btn btn-sm btn-dark shadow-sm my-2" type="submit">Send to Subscribers</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </body>
 

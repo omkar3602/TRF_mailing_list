@@ -5,43 +5,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/css/login.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Newsletters</title>
 </head>
 
-<body>
-    <h1>Newsletters</h1>
-    <a href="/">Home</a>
+<body style="background-color: #8EC5FC;
+background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+overflow: hidden;
+">
+
+    <!-- <h1>Newsletters</h1> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand px-3 fs-2 fw-bolder" href="#">Newsletters</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/newsletters/add">New newsletter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/newsletters/addfromfile">Import from .html</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- <a href="/">Home</a>
     <a href="/newsletters/add">New newsletter</a>
     <a href="/newsletters/addfromfile">Import from .html</a>
-    <hr>
+    <hr> -->
+    <div class="card border-left-primary shadow px-2 m-5 mt-3">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div>
 
-    <table border="2">
+                    <table class="table table-bordered ">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Email Subject</th>
+                                <th scope="col">View</th>
 
-        <tr>
-            <td>
-                <b>Subject</b>
-            </td>
-            <td>
-                <b>Content</b>
-            </td>
-            <td>
-                <b>View</b>
-            </td>
-        </tr>
-        <% for(var i=0; i < newsletters.length; i++) { %>
-            <tr>
-                <td>
-                    <%= newsletters[i].subject %>
-                </td>
-                <td>
-                    <%= newsletters[i].content %>
-                </td>
-                <td>
-                    <a href=<%=`/newsletters/${newsletters[i]._id}`%> >View</a>
-                </td>
-            </tr>
-            <% } %>
-    </table>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < newsletters.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <%= newsletters[i].subject %>
+                                    </td>
+
+                                    <td>
+                                        <a href=<%=`/newsletters/${newsletters[i]._id}`%> >View</a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

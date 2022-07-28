@@ -5,21 +5,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/css/login.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />  
+    <style>
+        body {
+            margin: 20px 50px;
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+
+        }
+    </style>
     <title>Import newsletter</title>
 </head>
 
 <body>
-    <h1>Import newsletter</h1>
-    <a href="/">Home</a>
-    <a href="/newsletters">Back</a>
+    <div class="d-sm-flex align-items-center justify-content-between">
+        <h1 class="h3 mb-0 fs-1 fw-bolder text-dark">Import newsletter</h1>
+        <!-- <form action="/logout/" method="post" class="d-mb-inline-block d-sm-inline-block">
+            <button type="submit" class="d-mb-inline-block d-sm-inline-block btn btn-sm btn-dark shadow-sm">Logout</button>
+        </form> -->
+        
+    </div>
+    
+    <a class="btn btn-sm btn-dark shadow-sm mt-2" href="/">Home</a>
+    <a class="btn btn-sm btn-dark shadow-sm mt-2" href="/newsletters">Back</a>
     <hr>
 
     <form method="POST" encType="multipart/form-data">
         <label for="subject">Subject:</label>
-        <input type="text" name="subject" placeholder="Subject" required>
+        <input class="form-control" type="text" name="subject" placeholder="Subject" required>
         <br>
-        <input type="file" accept=".html" name="newsletter" required>
-        <button type="submit">Import newsletter</button>
+        <input class="form-control" type="file" accept=".html" name="newsletter" required>
+        <button class="btn btn-sm btn-dark shadow-sm mt-2" type="submit">Import newsletter</button>
     </form>
 </body>
 
