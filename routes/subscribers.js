@@ -8,6 +8,10 @@ router.use(express.urlencoded({
     extended: true
 }))
 
+router.route('/deleteAll').get(Authenticate, (req, res) => {
+    Subscriber.remove({}).then(() => res.redirect("/subscribers")).catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/').get(Authenticate, (req, res) => {
     Subscriber.find().then(subscribers => res.render('subscribers/subscribers', { subscribers: subscribers })).catch(err => res.status(400).json('Error: ' + err));
 
