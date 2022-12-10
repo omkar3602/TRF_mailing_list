@@ -92,6 +92,26 @@
 
 
             </div>
+            <div class="card border-left-primary shadow px-2 m-3 mt-3 ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <h3>Custom Email</h3>
+                        <br><br>
+                        <div>
+                            <form action=<%=`/newsletters/custom_sendtoall`%> method="post" encType="multipart/form-data">
+                                <label for="subject">SUBJECT:</label>
+                                <input type="text" name="subject" class="form-control" style="width: 500px" placeholder="Subject" required>
+                                <br>
+                                <label for="content">CONTENT:</label>
+                                <textarea rows="10" name="content" class="form-control" style="width: 500px" placeholder="Content" required></textarea>
+                                <br>
+                                <input class="form-control" type="file" accept=".xlsx" name="custom_data" required>
+                                <button class="btn btn-sm btn-dark shadow-sm my-2" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 </body>
 
